@@ -1,31 +1,24 @@
 import { useEffect, useState } from "react";
-
-const api_key = import.meta.env.MOVIE_DB_API_KEY;
+const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY;
 
 export default function App() {
-  const base_movies_api_url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}`;
 
   const [inputValue, setInputValue] = useState('')
-  const [search, setSearch] = useState('')
-  const [filteredMovies, setFilteredMovies] = useState(base_movies_api_url)
+  const [filteredMovies, setFilteredMovies] = useState([])
 
-  useEffect(() => {
-
-    setFilteredMovies(movies.filter(movie => movie.title.toLowerCase().includes(inputValue.toLocaleLowerCase())))
-  },[])
 
   function handleFormSubmit(e) {
     e.preventDefault(e)
-    setSearch(inputValue)
-    console.log(inputValue);
 
 
-    fetch(base_movies_api_url)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      
-    })
+
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${inputValue}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setFilteredMovies(data.results)
+
+      })
   }
 
 
@@ -56,15 +49,15 @@ export default function App() {
       <div>
         <div className="container mb-5">
           <div className="row gap-2">
-            {filteredMovies.map(movie => {
+            {filteredMovies.map(movie => (
 
               <div key={movie.id} className="card">
-                <h4>{movie.title}</h4>
-                <h5>{movie.original_title}</h5>
-                <p>{movie.original_language}</p>
-                <p>{movie.vote_count}</p>
+                <h4>Titolo: {movie.title}</h4>
+                <h5>Titolo originale: {movie.original_title}</h5>
+                <p>Lingua: {movie.original_language}</p>
+                <p>Voto: {movie.vote_average.toFixed(1)}</p>
               </div>
-            })}
+            ))}
           </div>
         </div>
       </div>
