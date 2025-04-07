@@ -3,7 +3,11 @@ export default function Footer() {
   return(
 
     <>
-    <h1>HELLO FOOTER</h1>
+    <footer className="bg-black">
+      <div className="container d-flex justify-content-center text-light">
+        @boolean 2025
+      </div>
+    </footer>
     </>
   )
 }

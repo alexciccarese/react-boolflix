@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Main from './components/main';
+import Footer from './components/Footer';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons';
 
@@ -37,6 +38,8 @@ export default function App() {
       faStar={faStar}
       faStarEmpty={faStarEmpty}
       />
+
+      <Footer />
 
     </>
   )
