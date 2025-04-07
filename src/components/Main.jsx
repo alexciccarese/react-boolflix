@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-export default function Main({filteredMovies, faStar, faStarEmpty}) {
+export default function Main({ filteredMovies, faStar, faStarEmpty }) {
 
   return (
 
@@ -21,7 +21,7 @@ export default function Main({filteredMovies, faStar, faStarEmpty}) {
               const stars = Array.from({ length: totalStars })
 
               return (
-
+                /* card */
                 <div key={movie.id} className="col">
                   <div className="card border-0">
                     <div className="image-container">
