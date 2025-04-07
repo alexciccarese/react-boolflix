@@ -58,11 +58,11 @@ export default function App() {
                 < div key={movie.id} className="card" >
                   <h4>
                     {movie.media_type === "movie" ? "Film: " : "Serie TV: "}
-                    {movie.media_type === "movie" ? movie.title : movie.name}
+                    {movie.media_type === "movie" ? movie.title || "Titolo non disponibile" : movie.name || "Nome non disponibile"}
                   </h4>
-                  <h5>Titolo originale: {movie.original_title || movie.original_name}</h5>
-                  <p>Lingua: <img src={imgFlag} alt={movie.original_language} onError={(e) => e.target.src = fallbackFlag} /></p>
-                  <p>Voto: {movie.vote_average.toFixed(1)}</p>
+                  Titolo originale: {movie.media_type === "movie" ? movie.original_title || "Non disponibile" : movie.original_name || "Non disponibile"}
+                  <p>Lingua: <img src={imgFlag} alt={movie.original_language || 'Lingua non disponibile'} onError={(e) => e.target.src = fallbackFlag} /></p>
+                  <p>Voto: {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
                 </div>
               )
             })}
