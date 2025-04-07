@@ -12,7 +12,7 @@ export default function App() {
 
 
 
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${inputValue}`)
+    fetch(`https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${inputValue}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -52,11 +52,15 @@ export default function App() {
             {filteredMovies.map(movie => {
               const imgFlag = `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/64.png`
               const fallbackFlag = '/red-flag.png'
+
               return (
 
                 < div key={movie.id} className="card" >
-                  <h4>Titolo: {movie.title}</h4>
-                  <h5>Titolo originale: {movie.original_title}</h5>
+                  <h4>
+                    {movie.media_type === "movie" ? "Film: " : "Serie TV: "}
+                    {movie.media_type === "movie" ? movie.title : movie.name}
+                  </h4>
+                  <h5>Titolo originale: {movie.original_title || movie.original_name}</h5>
                   <p>Lingua: <img src={imgFlag} alt={movie.original_language} onError={(e) => e.target.src = fallbackFlag} /></p>
                   <p>Voto: {movie.vote_average.toFixed(1)}</p>
                 </div>
