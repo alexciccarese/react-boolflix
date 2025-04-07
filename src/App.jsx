@@ -49,18 +49,22 @@ export default function App() {
       <div>
         <div className="container mb-5">
           <div className="row gap-2">
-            {filteredMovies.map(movie => (
+            {filteredMovies.map(movie => {
+              const imgFlag = `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/64.png`
+              const fallbackFlag = '/red-flag.png'
+              return (
 
-              <div key={movie.id} className="card">
-                <h4>Titolo: {movie.title}</h4>
-                <h5>Titolo originale: {movie.original_title}</h5>
-                <p>Lingua: {movie.original_language}</p>
-                <p>Voto: {movie.vote_average.toFixed(1)}</p>
-              </div>
-            ))}
+                < div key={movie.id} className="card" >
+                  <h4>Titolo: {movie.title}</h4>
+                  <h5>Titolo originale: {movie.original_title}</h5>
+                  <p>Lingua: <img src={imgFlag} alt={movie.original_language} onError={(e) => e.target.src = fallbackFlag} /></p>
+                  <p>Voto: {movie.vote_average.toFixed(1)}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
-      </div>
+      </div >
 
     </>
   )
