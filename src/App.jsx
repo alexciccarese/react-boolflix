@@ -50,7 +50,7 @@ export default function App() {
         <div className="container mb-5">
           <div className="row gap-2">
             {filteredMovies.map(movie => {
-              const imgFlag = `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/64.png`
+              const imgFlag = movie.original_language ? `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/64.png` : '/red-flag.png'
               const fallbackFlag = '/red-flag.png'
 
               return (
