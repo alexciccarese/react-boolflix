@@ -1,2 +1,28 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
+
+
+.card {
+  width: 100%;
+  height: 360px; 
+  overflow: hidden; 
+
+  .img-card {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.titles {
+  height: 100%;
+
+  h5 {
+    height: 60px;
+  }
+
+  p {
+    height: 60px;
+  }
+}
