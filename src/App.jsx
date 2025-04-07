@@ -37,6 +37,7 @@ export default function App() {
       filteredMovies={filteredMovies}
       faStar={faStar}
       faStarEmpty={faStarEmpty}
+      inputValue={inputValue}
       />
 
       <Footer />
