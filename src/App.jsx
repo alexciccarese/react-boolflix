@@ -53,16 +53,20 @@ export default function App() {
               const imgFlag = movie.original_language ? `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/64.png` : '/red-flag.png'
               const fallbackFlag = '/red-flag.png'
 
+              const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                : "/fallback-poster.png"
+
               return (
 
                 < div key={movie.id} className="card" >
+                  <img src={posterUrl} alt="" />
                   <h4>
                     {movie.media_type === "movie" ? "Film: " : "Serie TV: "}
                     {movie.media_type === "movie" ? movie.title || "Titolo non disponibile" : movie.name || "Nome non disponibile"}
                   </h4>
                   Titolo originale: {movie.media_type === "movie" ? movie.original_title || "Non disponibile" : movie.original_name || "Non disponibile"}
                   <p>Lingua: <img src={imgFlag} alt={movie.original_language || 'Lingua non disponibile'} onError={(e) => e.target.src = fallbackFlag} /></p>
-                  <p>Voto: {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
+                  <p>Voto: {movie.vote_average ? movie.vote_average.toFixed(1)/2 : 'Nessun voto'}</p>
                 </div>
               )
             })}
