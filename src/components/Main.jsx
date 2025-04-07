@@ -8,7 +8,7 @@ export default function Main({ filteredMovies, faStar, faStarEmpty, inputValue }
     <>
       <main className='bg-dark pt-5 pb-5'>
         <div className="container mb-5">
-          <h1 className='text-light'>Hai cercato: {inputValue.toUpperCase()}</h1>
+          <h1 className='text-light'>{inputValue.toUpperCase()}</h1>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
             {filteredMovies.map(movie => {
               const imgFlag = movie.original_language ? `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/24.png` : '/flag.png'
