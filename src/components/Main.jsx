@@ -11,12 +11,15 @@ export default function Main({ filteredMovies, faStar, faStarEmpty, inputValue }
           <h1 className='text-light'>{inputValue.toUpperCase()}</h1>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
             {filteredMovies.map(movie => {
+              /* language icons */
               const imgFlag = movie.original_language ? `https://flagsapi.com/${movie.original_language.toUpperCase()}/flat/24.png` : '/flag.png'
               const fallbackFlag = '/flag.png'
 
+              /* cover image card */
               const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
                 : "https://placeholder.pics/svg/226x360/B9B9B9-959595/040404-D2D2D2/Img%20not%20found"
 
+              /* rating with stars */
               const fullStars = Math.round(movie.vote_average / 2)
               const totalStars = 5
               const stars = Array.from({ length: totalStars })
@@ -42,6 +45,7 @@ export default function Main({ filteredMovies, faStar, faStarEmpty, inputValue }
                         </p>
                         <p>Lingua: <img src={imgFlag} alt={movie.original_language || 'Lingua non disponibile'} onError={(e) => e.target.src = fallbackFlag} /></p>
                         <p>
+
                           {stars.map((element, index) => (
                             <FontAwesomeIcon
                               key={index}
