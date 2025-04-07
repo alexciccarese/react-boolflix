@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'; 
 import { useEffect, useState } from "react";
 const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY;
 
@@ -56,6 +59,10 @@ export default function App() {
               const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
                 : "/fallback-poster.png"
 
+              const fullStars = Math.round((movie.vote_average || 0) / 2)
+              const totalStars = 5
+              const stars = Array.from({ length: totalStars })
+
               return (
 
                 < div key={movie.id} className="card" >
@@ -66,7 +73,15 @@ export default function App() {
                   </h4>
                   Titolo originale: {movie.media_type === "movie" ? movie.original_title || "Non disponibile" : movie.original_name || "Non disponibile"}
                   <p>Lingua: <img src={imgFlag} alt={movie.original_language || 'Lingua non disponibile'} onError={(e) => e.target.src = fallbackFlag} /></p>
-                  <p>Voto: {movie.vote_average ? movie.vote_average.toFixed(1)/2 : 'Nessun voto'}</p>
+                  <p>
+                    {stars.map((element, index) => (
+                      <FontAwesomeIcon
+                        key={index}
+                        icon={index < fullStars ? faStar : faStarEmpty}
+                        style={{ color: '#f5c518', marginRight: '2px' }}
+                      />
+                    ))}
+                  </p>
                 </div>
               )
             })}
