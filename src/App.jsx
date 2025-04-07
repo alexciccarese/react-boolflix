@@ -59,7 +59,7 @@ export default function App() {
               const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
                 : "/fallback-poster.png"
 
-              const fullStars = Math.round((movie.vote_average || 0) / 2)
+              const fullStars = Math.round(movie.vote_average / 2)
               const totalStars = 5
               const stars = Array.from({ length: totalStars })
 
