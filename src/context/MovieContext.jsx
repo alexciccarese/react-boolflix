@@ -3,15 +3,36 @@ import { createContext, useContext, useState } from "react";
 const GlobalContext = createContext()
 
 const GlobalProvider = ({ children }) => {
+  const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY;
 
-  const [movie, setMovie] = useState([])
+  const [inputValue, setInputValue] = useState('')
+  const [filteredMovies, setFilteredMovies] = useState([])
 
+  function handleFormSubmit(e) {
+    e.preventDefault(e)
+
+    fetch(`https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${inputValue}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setFilteredMovies(data.results)
+
+      })
+  }
 
   return (
 
-    <MovieContext.Provider value={{ movie, setMovie }}>
+    <GlobalContext.Provider value={{
+      api_key,
+      inputValue,
+      setInputValue,
+      filteredMovies,
+      setFilteredMovies,
+      handleFormSubmit,
+    }}
+    >
       {children}
-    </MovieContext.Provider>
+    </GlobalContext.Provider>
   )
 }
 
@@ -21,4 +42,4 @@ function useGlobalContext() {
 }
 
 
-export default { useGlobalContext, GlobalProvider }
+export { useGlobalContext, GlobalProvider }
